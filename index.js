@@ -40,6 +40,8 @@ function KareninAlani(kenaruzunlugu) {
   return kenaruzunlugu * kenaruzunlugu;
 }
 
+console.log(`Karenin alani: ${KareninAlani(10)}`);
+
 /* (Oto test yok) Yukarıdaki KareninAlani fonksiyonunu kenar uzunluğu = 10 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin
  (console.log)  */
 
@@ -55,7 +57,7 @@ function CemberinCevresi(yaricap) {
   return 2 * pi * yaricap;
 }
 
-console.log(CemberinCevresi(5));
+console.log(`Cemberin cevresi: ${CemberinCevresi(5)}`);
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -71,7 +73,7 @@ function CemberinAlani(yaricap) {
   return pi * yaricap ** 2;
 }
 
-console.log(CemberinAlani(15));
+console.log(`Cemberin alani: ${CemberinAlani(15)}`);
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -107,6 +109,91 @@ console.log(CemberinAlani(15));
 
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
+console.log(`'Sayilar' listesinin uzunlugu: ${sayilar.length}`);
+
+//3a. En kucuk ve en buyuk sayilar:
+
+let enBuyuk = null;
+let enKucuk = null;
+
+for(let sayi of sayilar){
+  if (enBuyuk === null && enKucuk === null){
+    enBuyuk = sayi;
+    enKucuk = sayi;
+  }
+  if (enBuyuk < sayi){
+    enBuyuk = sayi;
+  }
+  if (enKucuk > sayi){
+    enKucuk = sayi;
+  }
+}
+
+console.log(`En kucuk sayi: ${enKucuk}\nEn buyuk sayi: ${enBuyuk}`);
+
+
+//3b. 3'e tam bolunen sayilar:
+let uceBolunenler = [];
+sayilar.forEach(sayi => {
+  if (sayi % 3 === 0){
+    uceBolunenler.push(sayi);
+  }
+});
+
+let toplam3 = 0;
+for (let sayi of uceBolunenler){
+  toplam3 += sayi;
+}
+
+console.log(`3'e bolunebilen sayilarin liste uzunlugu: ${uceBolunenler.length}`);
+
+//3c. 3'e bolunebilen sayilarin toplami:
+
+let toplam = uceBolunenler.reduce((toplam,sayi) => toplam + sayi ,0);
+
+console.log(`3'e bolunebilenlerin toplami: ${toplam}`);
+
+// 3d. 500'den kucuk sayilar:
+
+let besyuzdenKucukSayilar =[];
+
+sayilar.filter((sayi) => {
+  if (sayi < 500){
+    besyuzdenKucukSayilar.push(sayi);
+  }
+});
+
+//console.log(besyuzdenKucukSayilar);
+
+//3e. 500'den kucuk sayilarin kucukten buyuge siralamasi:
+
+let siraliSayilar = [...sayilar];
+
+siraliSayilar = sayilar.sort((a , b) => a -b);
+
+//console.log(siraliSayilar);
+
+// 3f. Tekrar eden sayilar:
+
+let tekrarEdenSayilar = [];
+
+let tekrarlarObjesi = sayilar.reduce((nesne, sayi) => {
+  if (nesne[sayi]){
+    nesne[sayi] += 1;
+  }
+  else {
+    nesne[sayi] = 1;
+  }
+  return nesne;
+}, {});
+
+for (let key in tekrarlarObjesi){
+  tekrarEdenSayilar.push(`${key} sayısı ${tekrarlarObjesi[key]} tekrar edilmiştir `);
+}
+
+console.log(tekrarEdenSayilar);
+//console.log(tekrarlarObjesi);
+
 let ucetambolunenler,
   enkucuk,
   enbuyuk,
@@ -114,6 +201,11 @@ let ucetambolunenler,
   besyuzdenkucuksayilar,
   siralisayilar,
   tekraredensayilar;
+
+
+
+
+
 
 // 3a çözümü
 
